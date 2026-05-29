@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voces que Escuchan - Historias de la Comunidad Salesiana</title>
+<meta name="google-site-verification" content="oZHL9RoR2OIpY1m2pP0TXi51XgVhyZ0FKiqzOOcn_4o" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#E8600A;--or2:#F47C2A;--or3:#FFF0E6;--or4:#7A2E02;
+  --dk:#1A1208;--dk2:#2D1F0F;--dk3:#3D2A12;
+  --cr:#F5F0EB;--cr2:#EDE4D8;
+  --tx:var(--color-text-primary);--txm:var(--color-text-secondary);
+  --bd:var(--color-border-tertiary);--bg:var(--color-background-primary);
+  --bg2:var(--color-background-secondary);--bg3:var(--color-background-tertiary)
+}
+body{font-family:'Inter',sans-serif;background:var(--bg3)}
+
+nav{background:var(--dk);border-bottom:3px solid var(--or);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:200}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-icon{width:32px;height:32px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#fff;font-family:'Playfair Display',serif}
+.logo-text{font-size:14px;font-weight:500;color:#fff;letter-spacing:0.3px}
+.logo-sub{font-size:10px;color:rgba(255,255,255,0.5);display:block;margin-top:1px}
+.nav-links{display:flex;gap:1.25rem}
+.nav-links a{font-size:12px;color:rgba(255,255,255,0.6);text-decoration:none;cursor:pointer;transition:color .2s;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:#fff;border-bottom-color:var(--or)}
+.nav-cta{background:var(--or);color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:var(--or2)}
+
+.hero{background:var(--dk);padding:3.5rem 1.5rem 3rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(232,96,10,0.3)}
+.hero-accent{position:absolute;top:0;right:0;width:300px;height:100%;background:rgba(232,96,10,0.04);clip-path:polygon(40% 0,100% 0,100% 100%,0% 100%)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;color:var(--or2);background:rgba(232,96,10,0.1);border:1px solid rgba(232,96,10,0.25);padding:4px 14px;border-radius:20px;margin-bottom:1.25rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);font-weight:500;color:#fff;line-height:1.2;margin-bottom:0.75rem;max-width:600px}
+.hero h1 em{color:var(--or2);font-style:italic}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.55);max-width:460px;line-height:1.7;margin-bottom:2rem}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-main{background:var(--or);color:#fff;border:none;padding:11px 22px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s}
+.btn-main:hover{background:var(--or2)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);padding:11px 22px;border-radius:7px;font-size:13px;cursor:pointer;transition:all .2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.06);color:#fff}
+
+.stats-bar{background:var(--dk2);border-bottom:1px solid rgba(232,96,10,0.2);display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.stat-item{padding:1.25rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.05)}
+.stat-item:last-child{border-right:none}
+.stat-n{font-size:22px;font-weight:600;color:var(--or2)}
+.stat-l{font-size:11px;color:rgba(255,255,255,0.4);margin-top:3px;line-height:1.4}
+
+.carousel-section{background:var(--dk);padding:2.5rem 1.5rem;border-bottom:1px solid rgba(232,96,10,0.15)}
+.sec-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--or);margin-bottom:0.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:1.5rem}
+.car-wrap{position:relative}
+.car-track{display:flex;gap:14px;overflow:hidden;width:100%}
+.car-slide{flex:0 0 calc(33.33% - 10px);min-width:0;border-radius:10px;overflow:hidden;cursor:pointer;transition:opacity .2s}
+.car-slide:hover{opacity:.88}
+.car-img{width:100%;height:160px;object-fit:cover;display:block;background:var(--dk3)}
+.car-caption{background:var(--dk3);padding:10px 12px;border-top:2px solid var(--or)}
+.car-caption p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.4}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--or);border:none;width:34px;height:34px;border-radius:50%;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:10;transition:background .2s}
+.car-btn:hover{background:var(--or2)}
+.car-prev{left:-14px}
+.car-next{right:-14px}
+.car-dots{display:flex;gap:6px;justify-content:center;margin-top:12px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .2s}
+.dot.active{background:var(--or)}
+
+.stories-section{padding:2.5rem 1.5rem;background:var(--bg3)}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.25rem;gap:1rem;flex-wrap:wrap}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:12px;padding:6px 14px;border-radius:20px;background:var(--bg2);border:1px solid var(--bd);color:var(--txm);cursor:pointer;transition:all .2s}
+.pill:hover{border-color:var(--or);color:var(--or)}
+.pill.active{background:rgba(232,96,10,0.1);border-color:var(--or);color:var(--or)}
+
+.stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.story-card{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:1.25rem;transition:border-color .25s;position:relative}
+.story-card:hover{border-color:rgba(232,96,10,0.35)}
+.story-card.new-card{border-color:rgba(232,96,10,0.5);background:rgba(232,96,10,0.02)}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:500;flex-shrink:0}
+.av-s{background:rgba(232,96,10,0.12);color:var(--or4)}
+.av-t{background:rgba(26,18,8,0.08);color:var(--dk)}
+.av-m{background:rgba(232,96,10,0.06);color:var(--or)}
+.card-meta{}
+.card-name{font-size:13px;font-weight:500;color:var(--tx)}
+.badge{font-size:10px;padding:2px 9px;border-radius:10px;font-weight:500;display:inline-block;margin-top:3px}
+.b-s{background:rgba(232,96,10,0.1);color:#7A2E02}
+.b-t{background:rgba(26,18,8,0.07);color:#2D1F0F}
+.b-m{background:rgba(232,96,10,0.06);color:#854F0B}
+.card-quote{font-size:13px;color:var(--txm);line-height:1.75;font-style:italic;border-left:2px solid var(--or);padding-left:10px;border-radius:0}
+.card-footer{display:flex;gap:6px;margin-top:1rem;flex-wrap:wrap}
+.react-btn{font-size:11px;padding:5px 11px;border-radius:16px;background:var(--bg2);border:1px solid var(--bd);color:var(--txm);cursor:pointer;transition:all .2s}
+.react-btn:hover,.react-btn.lit{background:rgba(232,96,10,0.08);border-color:rgba(232,96,10,0.3);color:var(--or)}
+
+.divider{height:1px;background:var(--bd);margin:0 1.5rem}
+
+.form-section{padding:2.5rem 1.5rem;background:var(--bg)}
+.form-card{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:1.75rem;max-width:640px}
+.form-head{margin-bottom:1.5rem}
+.form-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--tx);margin-bottom:4px}
+.form-sub{font-size:13px;color:var(--txm);line-height:1.6}
+.fgroup{margin-bottom:14px}
+.flabel{font-size:12px;color:var(--txm);display:block;margin-bottom:5px}
+input[type=text],select,textarea{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:8px;color:var(--tx);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;outline:none;transition:border-color .2s}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--or)}
+textarea{resize:vertical;min-height:100px;line-height:1.65}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.anon-row{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;cursor:pointer}
+.tog{width:38px;height:21px;background:var(--or);border-radius:12px;position:relative;transition:background .2s;flex-shrink:0}
+.tog.off{background:var(--bd)}
+.tog-dot{width:15px;height:15px;background:#fff;border-radius:50%;position:absolute;top:3px;left:20px;transition:left .2s}
+.tog.off .tog-dot{left:3px}
+.anon-label{font-size:13px;color:var(--txm)}
+.char-hint{font-size:11px;color:var(--txm);text-align:right;margin-top:3px}
+.submit-btn{background:var(--or);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;width:100%;transition:background .2s;margin-top:4px}
+.submit-btn:hover{background:var(--or2)}
+.ok-msg{background:rgba(232,96,10,0.08);border:1px solid rgba(232,96,10,0.25);border-radius:8px;padding:1rem;text-align:center;font-size:13px;color:var(--or);display:none;margin-top:12px}
+
+.footer{background:var(--dk);padding:2rem 1.5rem;border-top:3px solid var(--or);text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:8px}
+.footer-tagline{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6;max-width:400px;margin:0 auto}
+.footer-divider{height:1px;background:rgba(255,255,255,0.08);margin:1.25rem 0}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.3)}
+
+@media(max-width:540px){.nav-links{display:none}.two-col{grid-template-columns:1fr}.car-slide{flex:0 0 calc(50% - 7px)}.car-slide:last-child{display:none}}
+</style>
+</head>
+<body>
+
+<h2 style="position:absolute;left:-9999px">Voz Entre Aulas — Plataforma de historias, Universidad Salesiana de Bolivia</h2>
+
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">V</div>
+    <div>
+      <span class="logo-text">Voz Entre Aulas</span>
+      <span class="logo-sub">Universidad Salesiana de Bolivia</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('sec-historias').scrollIntoView({behavior:'smooth'})">Historias</a>
+    <a onclick="document.getElementById('sec-fotos').scrollIntoView({behavior:'smooth'})">Galería</a>
+    <a onclick="document.getElementById('sec-form').scrollIntoView({behavior:'smooth'})">Compartir</a>
+    <a>Proyecto</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('sec-form').scrollIntoView({behavior:'smooth'})">Contar mi historia</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-tag"><i class="ti ti-heart" aria-hidden="true" style="font-size:12px"></i> Ingeniería Comercial · Proyecto Social 2024</div>
+  <h1>Nosotros no juzgamos…<br><em>escuchamos.</em></h1>
+  <p class="hero-sub">Cada estudiante tiene una historia. Cada docente también. Este es el espacio donde esas voces encuentran su lugar en la Universidad Salesiana de Bolivia.</p>
+  <div class="hero-btns">
+    <button class="btn-main" onclick="document.getElementById('sec-form').scrollIntoView({behavior:'smooth'})"><i class="ti ti-pencil" aria-hidden="true" style="font-size:14px;margin-right:6px;vertical-align:-2px"></i>Contar mi historia</button>
+    <button class="btn-ghost" onclick="document.getElementById('sec-historias').scrollIntoView({behavior:'smooth'})"><i class="ti ti-book-open" aria-hidden="true" style="font-size:14px;margin-right:6px;vertical-align:-2px"></i>Escuchar historias</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-n" id="s-total">50</div><div class="stat-l">Historias compartidas</div></div>
+  <div class="stat-item"><div class="stat-n">2</div><div class="stat-l">Voces: estudiantes y docentes</div></div>
+  <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">Universidad unida</div></div>
+  <div class="stat-item"><div class="stat-n">∞</div><div class="stat-l">Historias por escuchar</div></div>
+</div>
+
+<div class="carousel-section" id="sec-fotos">
+  <div class="sec-label"><i class="ti ti-photo" aria-hidden="true" style="font-size:12px;margin-right:5px;vertical-align:-1px"></i>Galería del campus</div>
+  <div class="sec-title">La vida universitaria en imágenes</div>
+  <div class="car-wrap">
+    <button class="car-btn car-prev" onclick="carMove(-1)" aria-label="Anterior"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+    <div class="car-track" id="carTrack"></div>
+    <button class="car-btn car-next" onclick="carMove(1)" aria-label="Siguiente"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+  </div>
+  <div class="car-dots" id="carDots"></div>
+</div>
+
+<div class="stories-section" id="sec-historias">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label"><i class="ti ti-messages" aria-hidden="true" style="font-size:12px;margin-right:5px;vertical-align:-1px"></i>Muro de historias</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;color:var(--tx)">Voces que merecen ser escuchadas</div>
+    </div>
+    <div class="filter-row" id="filterRow">
+      <div class="pill active" onclick="filterBy('all',this)">Todos</div>
+      <div class="pill" onclick="filterBy('student',this)">Estudiantes</div>
+      <div class="pill" onclick="filterBy('teacher',this)">Docentes</div>
+      <div class="pill" onclick="filterBy('mixed',this)">Reflexiones</div>
+    </div>
+  </div>
+  <div class="stories-grid" id="storiesGrid"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="form-section" id="sec-form">
+  <div class="sec-label" style="margin-bottom:0.5rem"><i class="ti ti-feather" aria-hidden="true" style="font-size:12px;margin-right:5px;vertical-align:-1px"></i>Tu voz importa</div>
+  <div class="form-card">
+    <div class="form-head">
+      <div class="form-title">Comparte tu historia</div>
+      <div class="form-sub">Escribe lo que sientes. Puedes publicar de forma anónima. Cada relato ayuda a construir un espacio más humano en nuestra universidad.</div>
+    </div>
+    <div class="anon-row" onclick="toggleAnon()">
+      <div class="tog" id="togEl"><div class="tog-dot"></div></div>
+      <span class="anon-label" id="togLabel">Publicar de forma anónima</span>
+    </div>
+    <div id="nameArea" style="display:none">
+      <div class="two-col">
+        <div class="fgroup" style="margin:0"><label class="flabel">Tu nombre</label><input type="text" id="iName" placeholder="Nombre o apodo"></div>
+        <div class="fgroup" style="margin:0"><label class="flabel">Soy</label>
+          <select id="iRole"><option value="student">Estudiante</option><option value="teacher">Docente</option></select>
+        </div>
+      </div>
+    </div>
+    <div id="anonArea">
+      <div class="fgroup"><label class="flabel">¿Eres estudiante o docente?</label>
+        <select id="iRoleAnon"><option value="student">Estudiante</option><option value="teacher">Docente</option><option value="mixed">Prefiero no decirlo</option></select>
+      </div>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">Tu historia <span style="color:var(--or)">*</span></label>
+      <textarea id="iStory" placeholder="Escribe aquí tu experiencia, reflexión o mensaje. No existe historia pequeña cuando viene del corazón…" oninput="cCount()"></textarea>
+      <div class="char-hint"><span id="cC">0</span>/600 caracteres</div>
+    </div>
+    <button class="submit-btn" onclick="submitStory()"><i class="ti ti-send" aria-hidden="true" style="font-size:14px;margin-right:7px;vertical-align:-2px"></i>Publicar historia</button>
+    <div class="ok-msg" id="okMsg"><i class="ti ti-circle-check" aria-hidden="true" style="font-size:16px;margin-right:6px;vertical-align:-3px"></i>¡Tu historia fue publicada! Gracias por compartir tu voz con la comunidad Salesiana.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-logo">Voz Entre Aulas</div>
+  <div class="footer-tagline">Un proyecto social de la carrera de Ingeniería Comercial comprometido con escuchar, comprender y unir a la comunidad universitaria Salesiana.</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">Universidad Salesiana de Bolivia · La Paz · 2024 · Proyecto Social Universitario</div>
+</div>
+
+<script>
+const IMGS = [
+  {url:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80',cap:'Estudiantes en los pasillos del campus'},
+  {url:'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80',cap:'Momentos de reflexión en el aula'},
+  {url:'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80',cap:'Docentes y estudiantes construyendo juntos'},
+  {url:'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80',cap:'El conocimiento que transforma vidas'},
+  {url:'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80',cap:'Trabajo en equipo, crecimiento colectivo'},
+  {url:'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80',cap:'Un espacio para aprender y ser escuchado'},
+  {url:'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',cap:'Cada historia comienza con valor para contarla'},
+  {url:'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',cap:'La educación que humaniza'},
+];
+
+let carIdx=0;
+const PER=3;
+function buildCar(){
+  const t=document.getElementById('carTrack');
+  const d=document.getElementById('carDots');
+  t.innerHTML=IMGS.map((im,i)=>`<div class="car-slide" style="display:${i<PER?'block':'none'}" id="cs${i}"><img class="car-img" src="${im.url}" alt="${im.cap}" loading="lazy"><div class="car-caption"><p>${im.cap}</p></div></div>`).join('');
+  const pages=Math.ceil(IMGS.length/PER);
+  d.innerHTML=Array.from({length:pages},(_,i)=>`<div class="dot${i===0?' active':''}" onclick="goPage(${i})" id="dot${i}"></div>`).join('');
+}
+function goPage(p){
+  carIdx=p;
+  IMGS.forEach((_,i)=>{const el=document.getElementById('cs'+i);if(el)el.style.display=(i>=p*PER&&i<(p+1)*PER)?'block':'none'});
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===p));
+}
+function carMove(dir){
+  const pages=Math.ceil(IMGS.length/PER);
+  goPage((carIdx+dir+pages)%pages);
+}
+
+const RAW=[
+  {t:'student',q:'Mi papá perdió su trabajo el año pasado y desde entonces todo cambió en mi casa. Empecé a trabajar por las noches para ayudar con los gastos y muchas veces llegaba a clases sin dormir. Algunos pensaban que era irresponsable por quedarme dormido en el aula, pero nadie sabía que venía directamente del trabajo.'},
+  {t:'student',q:'Siempre fui callada. Me cuesta mucho hablar frente a otras personas porque desde pequeña tuve miedo a equivocarme. En la universidad sentía que todos eran más inteligentes que yo y eso hacía que me encerrara todavía más en mi silencio.'},
+  {t:'student',q:'Cada vez que exponía sentía que me faltaba el aire. Una vez me quedé paralizado frente a toda la clase y escuché algunas risas. Desde ese día empecé a tener miedo incluso de levantar la mirada.'},
+  {t:'student',q:'Mi mamá se enfermó durante el semestre y tuve que dividir mi tiempo entre cuidarla, trabajar y estudiar. Había noches donde lloraba del cansancio porque sentía que ya no podía con todo.'},
+  {t:'student',q:'Nunca le conté a nadie que sufría ansiedad. Todos me veían como alguien fuerte y tranquilo, pero por dentro mi mente nunca descansaba. Vivía preocupado por el futuro.'},
+  {t:'student',q:'Mientras mis compañeros hablaban de viajes y salidas, yo pensaba en cómo pagar mis fotocopias y el transporte para llegar a clases.'},
+  {t:'student',q:'Me dolía escuchar que decían que los estudiantes de ahora son flojos. Algunos estamos luchando contra problemas que nadie imagina.'},
+  {t:'student',q:'A veces fingía estar feliz porque no quería preocupar a mis amigos. Aprendí a sonreír incluso cuando me sentía completamente roto.'},
+  {t:'student',q:'Mi mayor miedo era decepcionar a mi familia. Sentía que si me iba mal en la universidad también les estaba fallando a ellos.'},
+  {t:'student',q:'Una vez un docente me dijo que veía potencial en mí. Tal vez para él fue una frase pequeña, pero para mí significó muchísimo porque llevaba años dudando de mí mismo.'},
+  {t:'student',q:'Pasé semanas enteras sintiéndome solo aunque estaba rodeado de personas. A veces la soledad más fuerte ocurre cuando nadie entiende cómo te sientes.'},
+  {t:'student',q:'Trabajar en un mercado desde temprano y luego venir a clases me dejó agotado muchas veces. Aun así seguía porque quería darle una mejor vida a mi madre.'},
+  {t:'student',q:'Me comparaba demasiado con otros compañeros. Veía sus notas y pensaba que nunca lograría estar a su nivel.'},
+  {t:'student',q:'Mi problema nunca fue falta de ganas. Mi problema era el cansancio mental que acumulé durante años.'},
+  {t:'student',q:'Recuerdo haber llorado en el baño de la universidad después de reprobar un examen. No por la nota, sino porque sentía que estaba perdiendo el control de mi vida.'},
+  {t:'student',q:'Siempre fui el estudiante gracioso del curso, pero nadie sabía que usaba el humor para esconder todo lo que me dolía.'},
+  {t:'student',q:'Cuando mis padres se separaron mi rendimiento bajó muchísimo. Intentaba concentrarme en clases, pero mi mente estaba destruida.'},
+  {t:'student',q:'Me daba miedo pedir ayuda porque pensaba que todos me juzgarían por no entender rápido las cosas.'},
+  {t:'student',q:'Había mañanas donde simplemente no quería salir de mi habitación. Me sentía emocionalmente agotado.'},
+  {t:'student',q:'Una vez pensé abandonar la carrera porque sentía que no era suficientemente inteligente para continuar.'},
+  {t:'student',q:'Mis amigos creían que estaba bien porque siempre estaba activo en redes sociales. La verdad era que me sentía vacío casi todos los días.'},
+  {t:'student',q:'Nunca faltaba a clases aunque estuviera mal emocionalmente porque tenía miedo de atrasarme y perder todo.'},
+  {t:'student',q:'Crecí escuchando que debía ser fuerte todo el tiempo. Eso hizo que aprendiera a callar mis emociones.'},
+  {t:'student',q:'Había días donde sobrevivir emocionalmente ya era un logro enorme para mí.'},
+  {t:'student',q:'Me costaba mucho hablar con otras personas porque siempre sentía que no encajaba.'},
+  {t:'student',q:'Detrás de mis malas notas existían ataques de ansiedad que nadie conocía.'},
+  {t:'student',q:'Sentía culpa cada vez que descansaba porque pensaba que debía seguir estudiando o trabajando.'},
+  {t:'student',q:'Escuchar comparaciones constantes con otros estudiantes destruyó poco a poco mi autoestima.'},
+  {t:'student',q:'A veces quería desaparecer unos días solo para descansar mentalmente.'},
+  {t:'student',q:'El estrés académico empezó a afectar mi sueño. Pasaba noches enteras pensando en tareas, exámenes y problemas.'},
+  {t:'student',q:'Nunca fui bueno expresando lo que sentía. Por eso muchas personas pensaban que era frío o distante.'},
+  {t:'student',q:'Mi familia esperaba demasiado de mí y eso me hacía sentir presión todo el tiempo.'},
+  {t:'student',q:'Una vez un compañero me ayudó cuando me vio llorando solo. Ese pequeño gesto me hizo sentir menos invisible.'},
+  {t:'student',q:'Había momentos donde pensaba que todos avanzaban menos yo.'},
+  {t:'student',q:'Intentaba ser perfecto en todo y terminé agotándome emocionalmente.'},
+  {t:'student',q:'No quería que nadie me viera vulnerable, así que aprendí a esconder mis emociones.'},
+  {t:'student',q:'Mientras estudiaba también cuidaba a mis hermanos menores porque mis padres trabajaban todo el día.'},
+  {t:'student',q:'A veces solo necesitaba escuchar un "todo va a estar bien".'},
+  {t:'student',q:'Me sentía frustrado porque daba mi máximo esfuerzo y aun así sentía que no era suficiente.'},
+  {t:'student',q:'Seguí adelante incluso cuando sentía que ya no tenía fuerzas. Creo que la esperanza fue lo único que me mantuvo aquí.'},
+  {t:'teacher',q:'Llevo años enseñando y he aprendido que detrás de cada estudiante existe una historia distinta. Algunos llegan sonriendo aunque por dentro estén completamente destruidos.'},
+  {t:'teacher',q:'Muchas veces llegamos cansados emocionalmente al aula, pero aun así intentamos dar lo mejor porque sabemos que nuestros estudiantes necesitan motivación.'},
+  {t:'teacher',q:'Recuerdo a un estudiante que parecía desinteresado. Después descubrí que trabajaba toda la noche para ayudar a su familia. Desde entonces entendí que no debemos juzgar tan rápido.'},
+  {t:'teacher',q:'A veces somos estrictos porque queremos preparar a los estudiantes para un mundo difícil. Pero detrás de esa exigencia también existe preocupación.'},
+  {t:'teacher',q:'Ser docente no solo implica enseñar teoría. También significa escuchar problemas, orientar y muchas veces apoyar emocionalmente.'},
+  {t:'teacher',q:'He visto estudiantes muy brillantes perder la confianza en sí mismos por comentarios negativos o comparaciones.'},
+  {t:'teacher',q:'Algunos docentes también vivimos ansiedad, estrés y agotamiento. Solo que aprendimos a ocultarlo detrás de profesionalismo.'},
+  {t:'teacher',q:'Una vez un estudiante se acercó después de clases solo para agradecerme por escucharlo. Ese momento me recordó por qué decidí enseñar.'},
+  {t:'teacher',q:'Las nuevas generaciones viven presiones emocionales muy fuertes. Muchos estudiantes tienen miedo constante al fracaso y eso afecta profundamente su aprendizaje.'},
+  {t:'teacher',q:'Con el tiempo entendí que la educación cambia cuando dejamos de ver estudiantes como números y empezamos a verlos como personas con emociones, heridas y sueños.'},
+];
+
+let stories=RAW.map((r,i)=>({...r,id:i+1,r:{a:0,b:0,c:0}}));
+let activeFilter='all';
+let isAnon=true;
+
+function nameOf(t){return t==='student'?'Estudiante anónimo':t==='teacher'?'Docente anónimo':'Anónimo'}
+function initOf(t){return t==='student'?'E':t==='teacher'?'D':'?'}
+function avCls(t){return t==='student'?'av-s':t==='teacher'?'av-t':'av-m'}
+function badgeCls(t){return t==='student'?'b-s':t==='teacher'?'b-t':'b-m'}
+function badgeTxt(t){return t==='student'?'Estudiante':t==='teacher'?'Docente':'Reflexión'}
+
+function renderStories(){
+  const list=activeFilter==='all'?stories:stories.filter(s=>s.t===activeFilter);
+  document.getElementById('storiesGrid').innerHTML=list.map(s=>`
+    <div class="story-card${s.isNew?' new-card':''}" id="sc${s.id}">
+      <div class="card-top">
+        <div class="av ${avCls(s.t)}">${initOf(s.t)}</div>
+        <div class="card-meta">
+          <div class="card-name">${s.name||nameOf(s.t)}</div>
+          <span class="badge ${badgeCls(s.t)}">${badgeTxt(s.t)}</span>
+        </div>
+      </div>
+      <p class="card-quote">"${s.q}"</p>
+      <div class="card-footer">
+        <button class="react-btn${s.r.a?'  lit':''}" onclick="doReact(${s.id},'a')">Me identifico${s.r.a?' · '+s.r.a:''}</button>
+        <button class="react-btn${s.r.b?' lit':''}" onclick="doReact(${s.id},'b')">Te escuchamos${s.r.b?' · '+s.r.b:''}</button>
+        <button class="react-btn${s.r.c?' lit':''}" onclick="doReact(${s.id},'c')">Gracias${s.r.c?' · '+s.r.c:''}</button>
+      </div>
+    </div>`).join('');
+}
+
+function doReact(id,k){
+  const s=stories.find(x=>x.id===id);
+  if(s){s.r[k]++;renderStories()}
+}
+
+function filterBy(f,el){
+  activeFilter=f;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderStories();
+}
+
+function toggleAnon(){
+  isAnon=!isAnon;
+  const tog=document.getElementById('togEl');
+  tog.classList.toggle('off',!isAnon);
+  document.getElementById('togLabel').textContent=isAnon?'Publicar de forma anónima':'Publicar con mi nombre';
+  document.getElementById('nameArea').style.display=isAnon?'none':'block';
+  document.getElementById('anonArea').style.display=isAnon?'block':'none';
+}
+
+function cCount(){
+  const v=document.getElementById('iStory').value;
+  if(v.length>600)document.getElementById('iStory').value=v.slice(0,600);
+  document.getElementById('cC').textContent=Math.min(v.length,600);
+}
+
+function submitStory(){
+  const txt=document.getElementById('iStory').value.trim();
+  if(txt.length<15){
+    const ta=document.getElementById('iStory');
+    ta.style.borderColor='rgba(226,75,74,0.6)';
+    setTimeout(()=>ta.style.borderColor='',2000);
+    return;
+  }
+  let name,type;
+  if(isAnon){
+    const rv=document.getElementById('iRoleAnon').value;
+    type=rv==='mixed'?'mixed':rv;
+    name=nameOf(type);
+  } else {
+    name=document.getElementById('iName').value.trim()||nameOf(document.getElementById('iRole').value);
+    type=document.getElementById('iRole').value;
+  }
+  stories.unshift({id:Date.now(),t:type,q:txt,name,r:{a:0,b:0,c:0},isNew:true});
+  document.getElementById('iStory').value='';
+  document.getElementById('cC').textContent='0';
+  document.getElementById('s-total').textContent=stories.length;
+  const ok=document.getElementById('okMsg');
+  ok.style.display='block';
+  setTimeout(()=>ok.style.display='none',4500);
+  activeFilter='all';
+  document.querySelectorAll('.pill').forEach((p,i)=>p.classList.toggle('active',i===0));
+  renderStories();
+  setTimeout(()=>document.getElementById('sec-historias').scrollIntoView({behavior:'smooth'}),300);
+}
+
+buildCar();
+renderStories();
+</script>
+</body>
+</html>
